@@ -36,12 +36,12 @@ export default function Home() {
   return (
     <div className="flex flex-col lg:flex-row h-screen bg-gray-100">
       {/* Sidebar */}
-      <div className="w-full lg:max-w-[28rem] bg-white shadow-lg">
-        <div className="p-8 h-full flex flex-col">
-          <h1 className="text-4xl font-extrabold text-gray-900 mb-2">AI Paragraph Generator</h1>
-          <p className="text-gray-600 mb-8">Powered by cutting-edge AI technology</p>
+      <div className="w-full lg:max-w-xs bg-white shadow-lg">
+        <div className="p-6 md:p-8 h-full flex flex-col">
+          <h1 className="text-2xl md:text-4xl font-extrabold text-gray-900 mb-2">AI Paragraph Generator</h1>
+          <p className="text-gray-600 mb-8 text-sm md:text-base">Powered by cutting-edge AI technology</p>
           
-          <form onSubmit={handleSubmit} className="space-y-6 flex-grow">
+          <form onSubmit={handleSubmit} className="space-y-4 md:space-y-6 flex-grow">
             <div>
               <label htmlFor="topic" className="block text-sm font-medium text-gray-700">Topic</label>
               <input
@@ -82,16 +82,16 @@ export default function Home() {
           
           {error && <p className="mt-4 text-sm text-red-600">{error}</p>}
           
-          <div className="mt-auto pt-6 text-center text-sm text-gray-500">
+          <div className="mt-auto pt-6 text-center text-xs md:text-sm text-gray-500">
             © 2023 AI Paragraph Generator. All rights reserved.
           </div>
         </div>
       </div>
 
       {/* Main Content */}
-      <div className="flex-grow flex flex-col p-8 bg-gradient-to-br from-indigo-500 to-purple-600 overflow-hidden">
-        <div className="flex-grow flex flex-col bg-white rounded-xl shadow-lg p-8 overflow-hidden">
-          <h2 className="text-2xl font-bold text-gray-900 mb-4">Generated Paragraph:</h2>
+      <div className="flex-grow flex flex-col p-4 md:p-8 bg-gradient-to-br from-indigo-500 to-purple-600 overflow-hidden">
+        <div className="flex-grow flex flex-col bg-white rounded-xl shadow-lg p-4 md:p-8 overflow-hidden">
+          <h2 className="text-xl md:text-2xl font-bold text-gray-900 mb-4">Generated Paragraph:</h2>
           <div className="flex-grow overflow-auto">
             {paragraph ? (
               <div className="h-full flex flex-col animate-fade-in">
