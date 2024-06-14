@@ -38,7 +38,7 @@ export default function Home() {
       {/* Sidebar */}
       <div className="w-full lg:max-w-xs bg-white shadow-lg">
         <div className="p-6 md:p-8 h-full flex flex-col">
-          <h1 className="text-2xl md:text-4xl font-extrabold text-gray-900 mb-2">AI Paragraph Generator</h1>
+          <h1 className="text-2xl md:text-4xl font-extrabold text-gray-900 mb-2">AI by Shafi Paragraph Generator</h1>
           <p className="text-gray-600 mb-8 text-sm md:text-base">Powered by cutting-edge AI technology</p>
           
           <form onSubmit={handleSubmit} className="space-y-4 md:space-y-6 flex-grow">
