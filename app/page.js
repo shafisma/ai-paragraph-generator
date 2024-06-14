@@ -7,10 +7,12 @@ export default function Home() {
   const [wordCount, setWordCount] = useState('');
   const [paragraph, setParagraph] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState('');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsLoading(true);
+    setError('');
     try {
       const response = await fetch('/api/generate', {
         method: 'POST',
@@ -19,19 +21,22 @@ export default function Home() {
         },
         body: JSON.stringify({ topic, wordCount: parseInt(wordCount) }),
       });
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
       const data = await response.json();
       setParagraph(data.paragraph);
     } catch (error) {
       console.error('Error:', error);
-      setParagraph('An error occurred while generating the paragraph.');
+      setError('An error occurred while generating the paragraph.');
     }
     setIsLoading(false);
   };
 
   return (
-    <div className="flex h-screen bg-gray-100">
+    <div className="flex flex-col lg:flex-row h-screen bg-gray-100">
       {/* Sidebar */}
-      <div className="w-full max-w-[28rem] bg-white shadow-lg">
+      <div className="w-full lg:max-w-[28rem] bg-white shadow-lg">
         <div className="p-8 h-full flex flex-col">
           <h1 className="text-4xl font-extrabold text-gray-900 mb-2">AI Paragraph Generator</h1>
           <p className="text-gray-600 mb-8">Powered by cutting-edge AI technology</p>
@@ -61,6 +66,7 @@ export default function Home() {
                 placeholder="Desired word count"
                 value={wordCount}
                 onChange={(e) => setWordCount(e.target.value)}
+                min="1"
               />
             </div>
             <div>
@@ -73,6 +79,8 @@ export default function Home() {
               </button>
             </div>
           </form>
+          
+          {error && <p className="mt-4 text-sm text-red-600">{error}</p>}
           
           <div className="mt-auto pt-6 text-center text-sm text-gray-500">
             © 2023 AI Paragraph Generator. All rights reserved.
